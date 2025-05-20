@@ -21,7 +21,7 @@ This project demonstrates foundational AWS infrastructure deployment using Infra
 ## Schedule
 
 ### GitHub Setup & AWS IAM
-- **1:30-3:00 PM**: Repository Setup
+-  Repository Setup
   - Initialize GitHub repository
   - Create directory structure
   - Set up README template
