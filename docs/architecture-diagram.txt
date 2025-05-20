@@ -1,0 +1,80 @@
+AWS Infrastructure Architecture
+---------------------------
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                               Region                                     │
+│                                                                         │
+│  ┌─────────────────────────────────────────────────────────────────┐    │
+│  │                            VPC (10.0.0.0/16)                    │    │
+│  │                                                                 │    │
+│  │  ┌────────────────┐       ┌────────────────┐                    │    │
+│  │  │  Availability  │       │  Availability  │                    │    │
+│  │  │    Zone A      │       │    Zone B      │                    │    │
+│  │  │                │       │                │                    │    │
+│  │  │  ┌──────────┐  │       │  ┌──────────┐  │   ┌─────────────┐  │    │
+│  │  │  │ Public   │  │       │  │ Public   │  │   │    IGW      │  │    │
+│  │  │  │ Subnet   │◄─┼───────┼──┼─────────►│◄─┼───┼─────────────┼─►    │
+│  │  │  │(10.0.1.0)│  │       │  │(10.0.2.0)│  │   │             │  │    │
+│  │  │  └──────────┘  │       │  └──────────┘  │   └─────────────┘  │    │
+│  │  │      │         │       │       │        │                    │    │
+│  │  │      ▼         │       │       ▼        │                    │    │
+│  │  │  ┌──────────┐  │       │  ┌──────────┐  │                    │    │
+│  │  │  │   NAT    │  │       │  │   NAT    │  │                    │    │
+│  │  │  │ Gateway  │  │       │  │ Gateway  │  │                    │    │
+│  │  │  └──────────┘  │       │  └──────────┘  │                    │    │
+│  │  │      │         │       │       │        │                    │    │
+│  │  │      ▼         │       │       ▼        │                    │    │
+│  │  │  ┌──────────┐  │       │  ┌──────────┐  │                    │    │
+│  │  │  │ Private  │  │       │  │ Private  │  │                    │    │
+│  │  │  │ App      │  │       │  │ App      │  │                    │    │
+│  │  │  │ Subnet   │  │       │  │ Subnet   │  │                    │    │
+│  │  │  │(10.0.3.0)│  │       │  │(10.0.4.0)│  │                    │    │
+│  │  │  └──────────┘  │       │  └──────────┘  │                    │    │
+│  │  │      │         │       │       │        │                    │    │
+│  │  │      ▼         │       │       ▼        │                    │    │
+│  │  │  ┌──────────┐  │       │  ┌──────────┐  │                    │    │
+│  │  │  │ Private  │  │       │  │ Private  │  │                    │    │
+│  │  │  │ DB       │  │       │  │ DB       │  │                    │    │
+│  │  │  │ Subnet   │  │       │  │ Subnet   │  │                    │    │
+│  │  │  │(10.0.5.0)│  │       │  │(10.0.6.0)│  │                    │    │
+│  │  │  └──────────┘  │       │  └──────────┘  │                    │    │
+│  │  │                │       │                │                    │    │
+│  │  └────────────────┘       └────────────────┘                    │    │
+│  │                                                                 │    │
+│  └─────────────────────────────────────────────────────────────────┘    │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Security Groups:
+---------------
+- ALB Security Group: Allows HTTP/HTTPS from internet
+- Web Tier Security Group: Allows HTTP/HTTPS from ALB, SSH from Bastion
+- App Tier Security Group: Allows app traffic from Web tier, SSH from Bastion
+- DB Tier Security Group: Allows DB traffic from App tier only
+- Bastion Security Group: Allows SSH from trusted IPs only
+
+IAM:
+----
+- Developer Group: Read-only access
+- Operations Group: EC2 management access
+- EC2 Instance Role: Permissions for instances to access AWS services
+
+S3 Buckets (Future):
+-----------------
+- Application Assets Bucket
+- Terraform State Bucket
+- Logs Bucket
+
+Compute (Future):
+--------------
+- Bastion Host (in Public Subnet)
+- Web Servers (in Public Subnets)
+- Application Servers (in Private App Subnets)
+- Databases (in Private DB Subnets)
+
+Notes:
+-----
+1. Multi-AZ design for high availability
+2. Defense-in-depth security approach
+3. Limited internet exposure for sensitive components
+4. Infrastructure defined entirely with Terraform
