@@ -20,79 +20,78 @@ This project demonstrates foundational AWS infrastructure deployment using Infra
 
 ## Schedule
 
-### Tuesday (Day 1): GitHub Setup & AWS IAM
+### GitHub Setup & AWS IAM
 - **1:30-3:00 PM**: Repository Setup
   - Initialize GitHub repository
   - Create directory structure
   - Set up README template
   - Document project objectives
 
-- **3:00-5:30 PM**: IAM Configuration
+-  IAM Configuration
   - Implement AWS account setup
   - Create IAM users, groups, and roles
   - Define IAM policies for least privilege
   - Commit IAM configurations as Terraform code
 
-### Wednesday (Day 2): AWS Networking
-- **8:00-10:30 AM**: VPC Architecture
+### AWS Networking
+- VPC Architecture
   - Design multi-tier VPC architecture
   - Document network design decisions
   - Implement VPC with Terraform
   - Configure subnets, route tables
 
-- **10:30-12:00 PM**: Security Implementation
+-  Security Implementation
   - Define security groups
   - Configure NACLs
   - Implement network security best practices
 
-- **1:00-3:00 PM**: Connectivity Components
+- Connectivity Components
   - Set up Internet and NAT gateways
   - Configure VPC endpoints for AWS services
   - Implement transit gateway (if time permits)
 
-- **3:00-5:30 PM**: EC2 Deployment Foundations
+- EC2 Deployment Foundations
   - Create key pairs and instance profiles
   - Define EC2 launch configurations
   - Implement bastion host architecture
 
-### Thursday (Day 3): Storage & Advanced Features
-- **8:00-10:30 AM**: EC2 Configuration
+### Storage & Advanced Features
+-  EC2 Configuration
   - Complete EC2 implementations
   - Configure auto-scaling groups
   - Implement load balancers
 
-- **10:30-12:00 PM**: S3 Implementation
+- S3 Implementation
   - Create S3 buckets with proper configurations
   - Set up bucket policies and access controls
   - Configure lifecycle policies
 
-- **1:00-3:00 PM**: Terraform State Management
+- Terraform State Management
   - Implement remote state with S3
   - Configure state locking with DynamoDB
   - Set up Terraform workspaces
-
-- **3:00-5:30 PM**: Integration & Testing
+Integration & Testing
   - Connect EC2 to S3 securely
   - Test infrastructure deployment
   - Validate security configurations
 
-### Friday (Day 4): Project Completion
-- **8:00-10:30 AM**: Advanced Features
+Project Completion
+Advanced Features
   - Implement CloudWatch monitoring
   - Set up SNS notifications
   - Create dashboards
 
-- **10:30-12:00 PM**: Refinement
+-  Refinement
   - Code review and optimization
   - Security assessment
   - Cost optimization review
 
-- **1:00-3:00 PM**: Documentation
+-  Documentation
   - Complete README with detailed instructions
   - Create architecture diagrams
   - Document design decisions
 
-- **3:00-5:30 PM**: Final Review
+- Final Review
   - End-to-end deployment testing
   - Documentation review
   - Project presentation preparation
