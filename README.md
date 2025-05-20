@@ -3,8 +3,6 @@
 ## Project Overview
 This repository contains Terraform code to deploy a secure, scalable multi-tier AWS infrastructure following DevOps and Infrastructure as Code best practices. The architecture demonstrates professional-grade AWS deployment suitable for hosting highly available web applications.
 
-## Architecture
-![Architecture Diagram](docs/architecture-diagram.png)
 
 This project implements:
 - Multi-AZ VPC with public and private subnets
