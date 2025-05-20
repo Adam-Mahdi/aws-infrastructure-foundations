@@ -104,9 +104,3 @@ This architecture is designed to fit within the AWS Free Tier limits during deve
 1. Fork the repository
 2. Create a feature branch
 3. Submit a pull request with a clear description of changes
-
-## License
-[MIT License](LICENSE)
-
-## Author
-Your Name - [GitHub Profile](https://github.com/yourusername)
