@@ -7,12 +7,12 @@ This repository contains Terraform code to deploy a secure, scalable multi-tier 
 ![Architecture Diagram](docs/architecture-diagram.png)
 
 This project implements:
-- Multi-AZ VPC with public and private subnets
-- Secure networking with proper security groups and NACLs
-- EC2 instances with auto-scaling capabilities
-- S3 storage with appropriate access controls
-- CloudWatch monitoring and alerting
-- Everything deployed via Infrastructure as Code (Terraform)
+- **Multi-AZ VPC**: Public, private app, and private database subnets
+- **Load Balanced Auto-Scaling**: Application Load Balancer with auto-scaling groups
+- **Secure Access**: Bastion host architecture with tiered security groups
+- **Encrypted Storage**: S3 with versioning, encryption, and lifecycle policies
+- **Monitoring & Alerting**: CloudWatch dashboards with CPU alarms
+- **Infrastructure as Code**: Complete Terraform modular architecture
 
 ## Technologies Used
 - **AWS**: Cloud infrastructure provider
@@ -50,32 +50,36 @@ This project implements:
 - Git
 
 ## Deployment Instructions
+
+### Prerequisites
+- AWS CLI configured with appropriate credentials
+- Terraform v1.0+ installed
+- An EC2 Key Pair created (named "adam-keypair" or update in dev/main.tf)
+
+### Quick Start
 1. Clone this repository
-   ```
+   ```bash
    git clone https://github.com/yourusername/aws-infrastructure-foundations.git
    cd aws-infrastructure-foundations
    ```
 
-2. Initialize Terraform
-   ```
+2. Deploy the infrastructure
+   ```bash
    cd terraform/environments/dev
    terraform init
-   ```
-
-3. Review the deployment plan
-   ```
    terraform plan
-   ```
-
-4. Apply the infrastructure
-   ```
    terraform apply
    ```
 
-5. Verify deployment
-   - Check AWS Console
-   - Review outputs from Terraform
-   - Validate connectivity
+3. Access your infrastructure
+   - **Load Balancer**: Use the `load_balancer_dns` output
+   - **Bastion Host**: SSH to the `bastion_public_ip` output
+   - **Monitoring**: Visit the `cloudwatch_dashboard_url` output
+
+4. Clean up (when done)
+   ```bash
+   terraform destroy
+   ```
 
 ## Key Features
 - **Security**: Defense-in-depth approach with multiple security layers
