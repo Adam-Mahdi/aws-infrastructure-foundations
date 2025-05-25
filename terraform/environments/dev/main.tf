@@ -100,3 +100,17 @@ output "load_balancer_dns" {
 output "bastion_public_ip" {
   value = module.compute.bastion_public_ip
 }
+
+# Monitoring Module
+module "monitoring" {
+  source = "../../modules/monitoring"
+  
+  prefix         = local.prefix
+  region         = local.region
+  alb_arn_suffix = module.compute.load_balancer_arn_suffix
+  asg_name       = module.compute.autoscaling_group_name
+}
+
+output "cloudwatch_dashboard_url" {
+  value = module.monitoring.dashboard_url
+}
